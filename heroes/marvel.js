@@ -1,13 +1,16 @@
+const container = document.querySelector('.liga-heroes');
 
-fetch('https://raw.githubusercontent.com/007Alena/Week_20/marvel.json')
-.then(response => console.log(response.json()))
-.catch(err => console.log(err));
+document.addEventListener("DOMContentLoaded", function (e) {
+    Superheroes();
+});
 
-document.addEventListener('DOMContentLoaded', function (e) {
-    let heroes = JSON.parse(liga);
+function Superheroes() {
+    fetch('./marvel.json')
+        .then(response => response.json())
+        .then(heroes => {
     let heroesContent = "";
 
-for (hero of heroes) {
+ for (hero of heroes) {
     heroesContent += ` <div class = 'hero' style="background: url(${hero.img})">
     <h2>${hero.title}</h2>
     <div class='hero__container'>
@@ -71,11 +74,9 @@ for (hero of heroes) {
             document.querySelector(`input[name='${hero['name-rating']}'][value="` + rat + '"]').setAttribute('checked', 'checked');
         }
     }
-})
+
 
 document.querySelector('.button').addEventListener('click', () => {
-    let heroes = JSON.parse(liga);
-
     for (let hero of heroes) {
         let inputs = document.querySelectorAll(`input[name='${hero['name-rating']}']`);
 
@@ -86,3 +87,6 @@ document.querySelector('.button').addEventListener('click', () => {
         }
     }
 })
+})
+.catch(error => console.log(error));
+}
