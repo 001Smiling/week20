@@ -1,5 +1,3 @@
-const container = document.querySelector('.liga-heroes');
-
 document.addEventListener("DOMContentLoaded", function (e) {
     Superheroes();
 });
